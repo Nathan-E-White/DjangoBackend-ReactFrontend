@@ -1,23 +1,34 @@
-"""CoreRoot URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+#! /usr/bin/env python
 """
+------------------------------------------------------------------------------------------------------------------------
+                  ____        __  __                   __  __               __
+                 / __ \__  __/ /_/ /_  ____  ____     / / / /__  ____ _____/ /__  _____
+ ____________   / /_/ / / / / __/ __ \/ __ \/ __ \   / /_/ / _ \/ __ `/ __  / _ \/ ___/  ____________
+/_____/_____/  / ____/ /_/ / /_/ / / / /_/ / / / /  / __  /  __/ /_/ / /_/ /  __/ /     /_____/_____/
+              /_/    \__, /\__/_/ /_/\____/_/ /_/  /_/ /_/\___/\__,_/\__,_/\___/_/
+                    /____/
+------------------------------------------------------------------------------------------------------------------------
+:FILE:      DjangoBackend-ReactFrontend/CoreRoot/urls.py
+:AUTHOR:    Nathan E White, PhD
+:ABOUT:     Sets up routers for the Django admin site and api routes
+:NOTES:     For more information on this file, see:
+                            https://docs.djangoproject.com/en/3.1/topics/http/urls/
+------------------------------------------------------------------------------------------------------------------------
+"""
+# <BOF>
+
+#   Imports --- Django Package Imports: admin portal
 from django.contrib import admin
-from django.urls import path, include
 
+#   Imports --- Django Package Imports: url building kit
+from django.urls import include, path
+
+
+#   Define the URL patterns to build
 urlpatterns = [
-    # path('admin/', admin.site.urls),
-    path('api/', include(('core.routers', 'core'), namespace='core-api')),
-
+    path('admin/', admin.site.urls),
+    path('api/', include(('core.routers', 'core'), namespace = 'core-api')),
 ]
+
+# ----------------------------------------------------------------------------------------------------------------------
+# <EOF>

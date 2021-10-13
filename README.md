@@ -33,4 +33,4 @@ python manage.py runserver
 yarn install
 ```
 
-6. Check out pages
+6. Check out pages you created

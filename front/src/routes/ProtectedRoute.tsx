@@ -1,3 +1,4 @@
+/** TODO: DOCUMENTATION/HEADER */
 import React from "react";
 import { Redirect, Route, RouteProps } from "react-router";
 import { useSelector } from "react-redux";

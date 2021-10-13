@@ -1,3 +1,5 @@
+/** TODO: DOCUMENTATION/HEADER */
+
 export interface UserResponse {
     email: string;
     username: string;

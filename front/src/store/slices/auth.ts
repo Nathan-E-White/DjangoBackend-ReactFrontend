@@ -1,3 +1,4 @@
+/** TODO: DOCUMENTATION/HEADER */
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AccountResponse } from "../../types";
 

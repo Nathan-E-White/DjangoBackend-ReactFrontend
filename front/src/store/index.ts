@@ -1,3 +1,4 @@
+/** TODO: DOCUMENTATION/HEADER */
 import {configureStore, getDefaultMiddleware} from "@reduxjs/toolkit";
 import {combineReducers}                      from "redux";
 import {

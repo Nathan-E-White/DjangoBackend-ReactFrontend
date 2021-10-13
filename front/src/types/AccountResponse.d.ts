@@ -1,3 +1,5 @@
+/** TODO: DOCUMENTATION/HEADER */
+
 export interface AccountResponse {
     user: {
         id: string;
