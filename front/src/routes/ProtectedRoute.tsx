@@ -6,6 +6,8 @@ import { RootState } from "../store";
 const ProtectedRoute = (props: RouteProps) => {
     const auth = useSelector((state: RootState) => state.auth);
 
+    // TODO: Types
+    // @ts-ignore
     if (auth.account) {
         if (props.path === "/login") {
             return <Redirect to={"/"} />;

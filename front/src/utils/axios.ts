@@ -14,6 +14,7 @@ axiosService.interceptors.request.use(async (config) => {
     const { token } = store.getState().auth;
 
     if (token !== null) {
+        // @ts-ignore
         config.headers.Authorization = 'Bearer ' + token;
         // @ts-ignore
         console.debug('[Request]', config.baseURL + config.url, JSON.stringify(token));
@@ -41,6 +42,7 @@ axiosService.interceptors.response.use(
 // @ts-ignore
 const refreshAuthLogic = async (failedRequest) => {
     const { refreshToken } = store.getState().auth;
+    // noinspection TypeScriptValidateJSTypes
     if (refreshToken !== null) {
         return axios
             .post(
@@ -53,14 +55,23 @@ const refreshAuthLogic = async (failedRequest) => {
                 }
             )
             .then((resp) => {
+                // TODO: types
+                // noinspection ES6ShorthandObjectProperty
+                // @ts-ignore
                 const { access, refresh } = resp.data;
                 failedRequest.response.config.headers.Authorization = 'Bearer ' + access;
+                // TODO: POTENTIAL PROBLEM HERE, USING RETURN VALUE FROM A VOID RETURN??
+                // TODO: POTENTIAL PROBLEM HERE, ARITY OF SET AUTH TOKENS
+                // noinspection JSVoidFunctionReturnValueUsed,TypeScriptValidateJSTypes
                 store.dispatch(
                     authSlice.actions.setAuthTokens({ token: access, refreshToken: refresh })
                 );
             })
             .catch((err) => {
                 if (err.response && err.response.status === 401) {
+                    // TODO: POTENTIAL PROBLEM HERE, VOID RETURN VALUE??
+                    // TODO: POTENTIAL PROBLEM HERE, NESTED FUNCTION NEEDS ARGUMENT??
+                    // noinspection JSVoidFunctionReturnValueUsed
                     store.dispatch(authSlice.actions.setLogout());
                 }
             });

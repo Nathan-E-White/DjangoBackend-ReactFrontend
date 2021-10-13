@@ -1,29 +1,32 @@
-import React from "react";
+import React                      from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {useHistory, useLocation} from "react-router";
-import authSlice from "../store/slices/auth";
-import useSWR from 'swr';
-import {fetcher} from "../utils/axios";
-import {UserResponse} from "../utils/types";
-import {RootState} from "../store";
-
-interface LocationState {
-    userId: string;
-}
+import {useHistory}               from "react-router";
+import authSlice                  from "../store/slices/auth";
+import useSWR                     from 'swr';
+import {fetcher}                  from "../utils/axios";
+import {UserResponse}             from "../types/UserResponse";
+// noinspection ES6UnusedImports
+import {AccountResponse}          from "../types/AccountResponse";
+import {RootState}                from "../store";
 
 
 const Profile = () => {
-    const account = useSelector((state: RootState) => state.auth.account);
-    const dispatch = useDispatch();
-    const history = useHistory();
+    // TODO: types
+    // @ts-ignore
+    const account = useSelector ((state: RootState) => state.auth.account);
+    const dispatch = useDispatch ();
+    const history = useHistory ();
     // @ts-ignore
     const userId = account?.id;
 
-    const user = useSWR<UserResponse>(`/user/${userId}/`, fetcher)
+    const user = useSWR<UserResponse> (`/user/${userId}/`, fetcher);
 
     const handleLogout = () => {
-        dispatch(authSlice.actions.setLogout());
-        history.push("/login");
+        // TODO: POTENTIAL PROBLEM, ARE WE USING A VOID RETURN VALUE??
+        // TODO: DOES THE NESTED FUNCTION NEED A CALL VALUE??
+        // noinspection JSVoidFunctionReturnValueUsed
+        dispatch (authSlice.actions.setLogout ());
+        history.push ("/login");
     };
     return (
         <div className="w-full h-screen">
@@ -32,7 +35,7 @@ const Profile = () => {
                     onClick={handleLogout}
                     className="rounded p-2 w-32 bg-red-700 text-white"
                 >
-                    Deconnexion
+                    Logout
                 </button>
             </div>
             {
